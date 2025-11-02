@@ -1,3 +1,5 @@
+package com.jwtapp.jwtappdemo.service;
+
 import com.jwtapp.jwtappdemo.model.AppUser;
 import com.jwtapp.jwtappdemo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
