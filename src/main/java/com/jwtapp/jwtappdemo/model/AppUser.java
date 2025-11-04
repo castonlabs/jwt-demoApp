@@ -18,11 +18,12 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long Id;
-    @Column(name= "full-name,", nullable=false)
+    @Column(name= "first-name", nullable=false)
     private String firstName;
 
     @Size(min = 5, max = 20,message = "max is 20 & min is 5")
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true,name = "username")
+
     private String userName;
 
     @Column(nullable = false)
@@ -31,7 +32,7 @@ public class AppUser {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    public AppUser(String firstName, String username, String password, UserRole role) {
+    public AppUser(String firstName, String userName, String password, UserRole role) {
         this.firstName = firstName;
         this.userName = userName;
         this.password = password;

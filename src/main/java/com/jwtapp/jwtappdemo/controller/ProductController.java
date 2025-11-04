@@ -2,6 +2,7 @@ package com.jwtapp.jwtappdemo.controller;
 
 import com.jwtapp.jwtappdemo.model.Product;
 import com.jwtapp.jwtappdemo.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,18 +25,18 @@ public class ProductController {
 
     }
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping
-    public void deleteProduct(@RequestBody Product product) {
+    @DeleteMapping("/{id}")
+    public void deleteProductBYId(@PathVariable Long id, Product product) {
         productService.delete(product);
     }
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> saveProduct(@RequestBody Product product) {
+    public ResponseEntity<?> saveProduct(@Valid @RequestBody Product product) {
         return ResponseEntity.ok().body(productService.save(product));
     }
 
     @PreAuthorize("hasRole('ADIMIN')")
-    @PutMapping("/update")
-public ResponseEntity<?> updateProduct(@RequestBody Product product) {
+    @PutMapping("/{id}")
+public ResponseEntity<?> updateProduct( @PathVariable long id ,Product product) {
         return ResponseEntity.ok().body(productService.save(product));
 }
 }
